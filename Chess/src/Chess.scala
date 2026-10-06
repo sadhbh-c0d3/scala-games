@@ -307,7 +307,7 @@ package object Chess {
     /** Check that opponent's Knight is producing check */
     def isKnightCheckAt(rank: Int, file: Int)(color: Color)(board: Board): Boolean = {
         val knightThreats = Knight.validMoves
-            .map(nextSquare(rank, file)(color) _)
+            .map(nextSquare(rank, file)(color))
             .filter(isValidSquare)
             .filter(pos => board(pos._1)(pos._2) == Some((oppositeColor(color), Knight)))
         debug_log("Knight threats " + knightThreats)
@@ -317,7 +317,7 @@ package object Chess {
     /** Check that opponent's Pawn is producing check */
     def isPawnCheckAt(rank: Int, file: Int)(color: Color)(board: Board): Boolean = {
         val pawnThreats = Pawn.validKillMoves
-            .map(nextSquare(rank, file)(color) _)
+            .map(nextSquare(rank, file)(color))
             .filter(isValidSquare)
             .filter(pos => board(pos._1)(pos._2) == Some((oppositeColor(color), Pawn)))
         debug_log("Pawn threats " + pawnThreats)
@@ -371,9 +371,9 @@ package object Chess {
         val king = kingSquares(0)
         if (isCheckAt(king._1, king._2)(color)(board)) {
 
-            val kingEscapes = King.validMoves.map(nextSquare(king._1, king._2)(color) _)
+            val kingEscapes = King.validMoves.map(nextSquare(king._1, king._2)(color))
                 .filter(isValidSquare)
-                .filter(isSquareVacant(board) _)
+                .filter(isSquareVacant(board))
                 .filter(pos => !isCheckAt(pos._1, pos._2)(color)(board))
 
             if (kingEscapes.length > 0) {
@@ -420,7 +420,7 @@ package object Chess {
                  (toRank: Int, toFile: Int)
                  (color: Color)
                  (board: Board): Either[Board, InvalidMove] = {
-        val move = movePieceValid(fromRank, fromFile)(toRank, toFile) _
+        val move = movePieceValid(fromRank, fromFile)(toRank, toFile)
         val mv = moveVector(fromRank, fromFile)(toRank, toFile)(color)
         debug_log("Vector: " + mv)
         mv match {

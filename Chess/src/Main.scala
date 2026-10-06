@@ -45,18 +45,18 @@ object Main {
         val files: IndexedSeq[Int] = for (file <- 0 to 7) yield file 
         println(
             ("  ") +
-            (files fold "")((a, b) => a + "  " + b)
+            (files foldLeft "")((a, b) => a + "  " + b)
         )
         for (rank <- 0 to 7) {
             println(
                 (" " + rank) +
-                (board(rank) fold "")((a, b) => a + "|" + formatColorPiece(b)) +
+                (board(rank) foldLeft "")((a, b) => a + "|" + formatColorPiece(b)) +
                 ("|" + rank)
             )
         }
         println(
             ("  ") +
-            (files fold "")((a, b) => a + "  " + b)
+            (files foldLeft "")((a, b) => a + "  " + b)
         )
     }
 
@@ -84,7 +84,7 @@ object Main {
                             case _ => {}
                         }
                     }
-                    println
+                    println()
                 }
             }
         }

@@ -9,4 +9,4 @@ build:
 
 run:
 	@echo "Running Scala Chess..."
-	cd bin && scala Main
+	cd bin && scala -cp . --main-class Main
