@@ -45,17 +45,17 @@ object Main {
       while ((game(winner) == NoMark) && !game(stuck)) {
 
          val a = game(available)
-         val n = a length
+         val n = a.length
          val k = Random.nextInt(n + 1)
 
          if (k == n) {
-            println("Undoing move of player: " + (game previousTurn))
-            game undo()
+            println("Undoing move of player: " + (game.previousTurn))
+            game.undo()
          }
          else {
-            println("Turn of player: " + (game turn))
+            println("Turn of player: " + (game.turn))
             a(k) match {
-               case (i,j) => game play(i,j)
+               case (i,j) => game.play(i,j)
             }
          }
                         

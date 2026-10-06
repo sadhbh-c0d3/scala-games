@@ -122,15 +122,15 @@ package object TicTacToe {
 
    def show(board: Board): Unit = {
       for (i <- 0 to 2) {
-         println((board(i) fold "")(_ + "|" + _) + "|")
+         println((board(i) foldLeft "")(_ + "|" + _) + "|")
       }
    }
 
    // ----------------- Example Gameplay ---------------------
 
    def example(): Unit = {
-      def x = for (i <- 0 to 2) yield for(j <- 0 to 2) yield tick(i,j)(MarkX) _
-      def o = for (i <- 0 to 2) yield for(j <- 0 to 2) yield tick(i,j)(MarkO) _
+      def x = for (i <- 0 to 2) yield for(j <- 0 to 2) yield tick(i,j)(MarkX)
+      def o = for (i <- 0 to 2) yield for(j <- 0 to 2) yield tick(i,j)(MarkO)
 
       // Example five moves
       val play = x(0)(1)(o(1)(2)(x(2)(1)(o(2)(2)(x(1)(1)(board)))))
@@ -140,7 +140,7 @@ package object TicTacToe {
       winner(play) match {
          case MarkX => println("X won")
          case MarkO => println("O won")
-         case _ => Unit 
+         case _ => ()
       }
    }
 

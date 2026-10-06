@@ -9,7 +9,7 @@ build:
 
 run:
 	@echo "Running Scala version..."
-	cd bin && scala Main
+	cd bin && scala run -cp . --main-class Main
 
 run_ocaml:
 	@echo "Running OCaml version..."
